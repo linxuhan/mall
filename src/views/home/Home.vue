@@ -1,16 +1,28 @@
 <template>
   <div id="home">
     <nav-bar class="nav-bar"><div slot="center">购物街</div></nav-bar>
-    <scroll class="content" ref="scroll">
+    <tab-control
+         :titles="['流行', '新款', '精选']"
+         ref="tabControl"
+         class="tab-control"
+         v-show="isTabFixed"></tab-control>
+    <scroll class="content"
+      ref="scroll" 
+      :probe-type="3" 
+      @scroll="contentScroll" 
+      :pull-up-load="true"
+      @pullingUp="loadMore">
       <div>
-        <home-swiper :banners="banners" ref="hSwiper"></home-swiper>
+        <home-swiper :banners="banners" ref="hSwiper" @swiperImageLoad="swiperImageLoad"></home-swiper>
         <feature-view :features="recommends"></feature-view>
         <recommend-view></recommend-view>
-        <tab-control :titles="['流行', '新款', '精选']"></tab-control>
+        <tab-control
+         :titles="['流行', '新款', '精选']"
+         ref="tabControl"></tab-control>
         <good-list :good-list="goods"></good-list>
       </div>
     </scroll>
-    <back-top @click.native="backClick"></back-top>
+    <back-top @click.native="backClick" v-show="isShowBack"></back-top>
   </div>
 </template>
 
@@ -130,8 +142,155 @@
             title: "林旭瀚",
             price: 100,
             cfav: 50
+          },
+          {
+            img: "https://s10.mogucdn.com/mlcdn/c45406/180926_45fkj8ifdj4l824l42dgf9hd0h495_750x390.jpg",
+            title: "林旭瀚",
+            price: 100,
+            cfav: 50
+          },
+          {
+            img: "https://s10.mogucdn.com/mlcdn/c45406/180926_31eb9h75jc217k7iej24i2dd0jba3_750x390.jpg",
+            title: "林旭瀚",
+            price: 100,
+            cfav: 50
+          },
+          {
+            img: "https://s10.mogucdn.com/mlcdn/c45406/180919_3f62ijgkj656k2lj03dh0di4iflea_750x390.jpg",
+            title: "林旭瀚",
+            price: 100,
+            cfav: 50
+          },
+          {
+            img: "https://s10.mogucdn.com/mlcdn/c45406/180917_18l981g6clk33fbl3833ja357aaa0_750x390.jpg",
+            title: "林旭瀚",
+            price: 100,
+            cfav: 50
+          },
+          {
+            img: "https://s10.mogucdn.com/mlcdn/c45406/180926_45fkj8ifdj4l824l42dgf9hd0h495_750x390.jpg",
+            title: "林旭瀚",
+            price: 100,
+            cfav: 50
+          },
+          {
+            img: "https://s10.mogucdn.com/mlcdn/c45406/180926_31eb9h75jc217k7iej24i2dd0jba3_750x390.jpg",
+            title: "林旭瀚",
+            price: 100,
+            cfav: 50
+          },
+          {
+            img: "https://s10.mogucdn.com/mlcdn/c45406/180919_3f62ijgkj656k2lj03dh0di4iflea_750x390.jpg",
+            title: "林旭瀚",
+            price: 100,
+            cfav: 50
+          },
+          {
+            img: "https://s10.mogucdn.com/mlcdn/c45406/180917_18l981g6clk33fbl3833ja357aaa0_750x390.jpg",
+            title: "林旭瀚",
+            price: 100,
+            cfav: 50
+          },
+          {
+            img: "https://s10.mogucdn.com/mlcdn/c45406/180926_45fkj8ifdj4l824l42dgf9hd0h495_750x390.jpg",
+            title: "林旭瀚",
+            price: 100,
+            cfav: 50
+          },
+          {
+            img: "https://s10.mogucdn.com/mlcdn/c45406/180926_31eb9h75jc217k7iej24i2dd0jba3_750x390.jpg",
+            title: "林旭瀚",
+            price: 100,
+            cfav: 50
+          },
+          {
+            img: "https://s10.mogucdn.com/mlcdn/c45406/180919_3f62ijgkj656k2lj03dh0di4iflea_750x390.jpg",
+            title: "林旭瀚",
+            price: 100,
+            cfav: 50
+          },
+          {
+            img: "https://s10.mogucdn.com/mlcdn/c45406/180917_18l981g6clk33fbl3833ja357aaa0_750x390.jpg",
+            title: "林旭瀚",
+            price: 100,
+            cfav: 50
+          },
+          {
+            img: "https://s10.mogucdn.com/mlcdn/c45406/180926_45fkj8ifdj4l824l42dgf9hd0h495_750x390.jpg",
+            title: "林旭瀚",
+            price: 100,
+            cfav: 50
+          },
+          {
+            img: "https://s10.mogucdn.com/mlcdn/c45406/180926_31eb9h75jc217k7iej24i2dd0jba3_750x390.jpg",
+            title: "林旭瀚",
+            price: 100,
+            cfav: 50
+          },
+          {
+            img: "https://s10.mogucdn.com/mlcdn/c45406/180919_3f62ijgkj656k2lj03dh0di4iflea_750x390.jpg",
+            title: "林旭瀚",
+            price: 100,
+            cfav: 50
+          },
+          {
+            img: "https://s10.mogucdn.com/mlcdn/c45406/180917_18l981g6clk33fbl3833ja357aaa0_750x390.jpg",
+            title: "林旭瀚",
+            price: 100,
+            cfav: 50
+          },
+          {
+            img: "https://s10.mogucdn.com/mlcdn/c45406/180926_45fkj8ifdj4l824l42dgf9hd0h495_750x390.jpg",
+            title: "林旭瀚",
+            price: 100,
+            cfav: 50
+          },
+          {
+            img: "https://s10.mogucdn.com/mlcdn/c45406/180926_31eb9h75jc217k7iej24i2dd0jba3_750x390.jpg",
+            title: "林旭瀚",
+            price: 100,
+            cfav: 50
+          },
+          {
+            img: "https://s10.mogucdn.com/mlcdn/c45406/180919_3f62ijgkj656k2lj03dh0di4iflea_750x390.jpg",
+            title: "林旭瀚",
+            price: 100,
+            cfav: 50
+          },
+          {
+            img: "https://s10.mogucdn.com/mlcdn/c45406/180917_18l981g6clk33fbl3833ja357aaa0_750x390.jpg",
+            title: "林旭瀚",
+            price: 100,
+            cfav: 50
+          },
+          {
+            img: "https://s10.mogucdn.com/mlcdn/c45406/180926_45fkj8ifdj4l824l42dgf9hd0h495_750x390.jpg",
+            title: "林旭瀚",
+            price: 100,
+            cfav: 50
+          },
+          {
+            img: "https://s10.mogucdn.com/mlcdn/c45406/180926_31eb9h75jc217k7iej24i2dd0jba3_750x390.jpg",
+            title: "林旭瀚",
+            price: 100,
+            cfav: 50
+          },
+          {
+            img: "https://s10.mogucdn.com/mlcdn/c45406/180919_3f62ijgkj656k2lj03dh0di4iflea_750x390.jpg",
+            title: "林旭瀚",
+            price: 100,
+            cfav: 50
+          },
+          {
+            img: "https://s10.mogucdn.com/mlcdn/c45406/180917_18l981g6clk33fbl3833ja357aaa0_750x390.jpg",
+            title: "林旭瀚",
+            price: 100,
+            cfav: 50
           }
-        ]
+        ],
+        isShowBack: false,
+        tabOffsetTop: 0,
+        isTabFixed: false
       }
     },
     created() {
@@ -141,6 +300,12 @@
       //   this.banners = res.data.banners
       // })
     },
+    mounted() {
+      const refresh = this.debounce(this.$refs.scroll.refresh, 200)
+      this.$bus.$on('itemImageLoad', () => {
+        refresh()
+      })
+    },
     activated() {
       this.$refs.hSwiper.statrTimer()
     },
@@ -148,8 +313,32 @@
       this.$refs.hSwiper.stopTimer()
     },
     methods: {
+      debounce(func, delay) {
+        let timer = null
+
+        return function(...args) {
+          if (timer) clearTimeout(timer)
+
+          timer = setTimeout(() => {
+            func.apply(this, args)
+          }, delay);
+        }
+      },
       backClick() {
         this.$refs.scroll.scrollTo(0, 0)
+      },
+      contentScroll(position) {
+        this.isShowBack = -(position.y) > 300
+
+        this.isTabFixed = (-position.y) > this.tabOffsetTop
+        // this.isTabFixed = (-position.y) > 637
+      },
+      loadMore() {
+        console.log("1112")
+      },
+      swiperImageLoad() {
+        console.log(this.$refs.tabControl.$el.offsetTop)
+        this.tabOffsetTop = this.$refs.tabControl.$el.offsetTop
       }
     }
   }
@@ -171,5 +360,9 @@
     bottom: 49px;
     left: 0;
     right: 0;
+  }
+  .tab-control {
+    position: relative;
+    z-index: 9;
   }
 </style>
